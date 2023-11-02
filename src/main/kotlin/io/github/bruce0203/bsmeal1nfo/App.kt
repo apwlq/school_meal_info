@@ -11,7 +11,7 @@ fun publish() {
     val lunch = getMyLunch()
     val client = login()
     client.actions()
-        .story()
+        .timeline()
         .uploadPhoto(createImg(lunch))
         .thenAccept {
             println(
