@@ -16,6 +16,16 @@ fun getMyLunch(): String {
     return meal.lunch.joinToString("\n")
 }
 
+fun getMyDinner(): String {
+    val neis = NeisApi.Builder()
+        .build()
+
+    val schoolName = System.getenv("SCHOOL_NAME")
+    val sch = neis.getSchoolByName(schoolName).first()
+    val meal = neis.getMealsByAbsoluteDay(getNowDate(), sch.scCode, sch.schoolCode)
+    return meal.dinner.joinToString("\n")
+}
+
 fun getNowDate(): String = run {
     val cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Seoul"))
     val dt1 = SimpleDateFormat("YYYYMMdd")
